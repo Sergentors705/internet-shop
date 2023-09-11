@@ -1,0 +1,880 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.4
+-- Dumped by pg_dump version 15.4
+
+-- Started on 2023-09-11 09:11:42
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 225 (class 1259 OID 24642)
+-- Name: basket_devices; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.basket_devices (
+    id integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "basketId" integer,
+    "deviceId" integer
+);
+
+
+ALTER TABLE public.basket_devices OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 24641)
+-- Name: basket_devices_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.basket_devices_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.basket_devices_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3427 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: basket_devices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.basket_devices_id_seq OWNED BY public.basket_devices.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 24590)
+-- Name: baskets; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.baskets (
+    id integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "userId" integer
+);
+
+
+ALTER TABLE public.baskets OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 24589)
+-- Name: baskets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.baskets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.baskets_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3428 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: baskets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.baskets_id_seq OWNED BY public.baskets.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 24611)
+-- Name: brands; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.brands (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.brands OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 24610)
+-- Name: brands_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.brands_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.brands_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3429 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.brands_id_seq OWNED BY public.brands.id;
+
+
+--
+-- TOC entry 229 (class 1259 OID 24676)
+-- Name: device_infos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.device_infos (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "deviceId" integer
+);
+
+
+ALTER TABLE public.device_infos OWNER TO postgres;
+
+--
+-- TOC entry 228 (class 1259 OID 24675)
+-- Name: device_infos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.device_infos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.device_infos_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3430 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: device_infos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.device_infos_id_seq OWNED BY public.device_infos.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 24620)
+-- Name: devices; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.devices (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    price integer NOT NULL,
+    rating integer DEFAULT 0,
+    img character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "typeId" integer,
+    "brandId" integer
+);
+
+
+ALTER TABLE public.devices OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 24619)
+-- Name: devices_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.devices_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.devices_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3431 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: devices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.devices_id_seq OWNED BY public.devices.id;
+
+
+--
+-- TOC entry 227 (class 1259 OID 24659)
+-- Name: ratings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ratings (
+    id integer NOT NULL,
+    rate integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "userId" integer,
+    "deviceId" integer
+);
+
+
+ALTER TABLE public.ratings OWNER TO postgres;
+
+--
+-- TOC entry 226 (class 1259 OID 24658)
+-- Name: ratings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ratings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ratings_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3432 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: ratings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ratings_id_seq OWNED BY public.ratings.id;
+
+
+--
+-- TOC entry 231 (class 1259 OID 24690)
+-- Name: type_brands; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.type_brands (
+    id integer NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "typeId" integer,
+    "brandId" integer
+);
+
+
+ALTER TABLE public.type_brands OWNER TO postgres;
+
+--
+-- TOC entry 230 (class 1259 OID 24689)
+-- Name: type_brands_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.type_brands_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.type_brands_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3433 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: type_brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.type_brands_id_seq OWNED BY public.type_brands.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 24602)
+-- Name: types; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.types (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.types OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 24601)
+-- Name: types_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.types_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.types_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3434 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.types_id_seq OWNED BY public.types.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 24578)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    email character varying(255),
+    password character varying(255),
+    role character varying(255) DEFAULT 'USER'::character varying,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 24577)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3435 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 3220 (class 2604 OID 24645)
+-- Name: basket_devices id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.basket_devices ALTER COLUMN id SET DEFAULT nextval('public.basket_devices_id_seq'::regclass);
+
+
+--
+-- TOC entry 3215 (class 2604 OID 24593)
+-- Name: baskets id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.baskets ALTER COLUMN id SET DEFAULT nextval('public.baskets_id_seq'::regclass);
+
+
+--
+-- TOC entry 3217 (class 2604 OID 24614)
+-- Name: brands id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.brands ALTER COLUMN id SET DEFAULT nextval('public.brands_id_seq'::regclass);
+
+
+--
+-- TOC entry 3222 (class 2604 OID 24679)
+-- Name: device_infos id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.device_infos ALTER COLUMN id SET DEFAULT nextval('public.device_infos_id_seq'::regclass);
+
+
+--
+-- TOC entry 3218 (class 2604 OID 24623)
+-- Name: devices id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices ALTER COLUMN id SET DEFAULT nextval('public.devices_id_seq'::regclass);
+
+
+--
+-- TOC entry 3221 (class 2604 OID 24662)
+-- Name: ratings id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ratings ALTER COLUMN id SET DEFAULT nextval('public.ratings_id_seq'::regclass);
+
+
+--
+-- TOC entry 3223 (class 2604 OID 24693)
+-- Name: type_brands id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.type_brands ALTER COLUMN id SET DEFAULT nextval('public.type_brands_id_seq'::regclass);
+
+
+--
+-- TOC entry 3216 (class 2604 OID 24605)
+-- Name: types id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.types ALTER COLUMN id SET DEFAULT nextval('public.types_id_seq'::regclass);
+
+
+--
+-- TOC entry 3213 (class 2604 OID 24581)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 3415 (class 0 OID 24642)
+-- Dependencies: 225
+-- Data for Name: basket_devices; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.basket_devices (id, "createdAt", "updatedAt", "basketId", "deviceId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3407 (class 0 OID 24590)
+-- Dependencies: 217
+-- Data for Name: baskets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.baskets (id, "createdAt", "updatedAt", "userId") FROM stdin;
+1	2023-09-09 22:05:33.869+06	2023-09-09 22:05:33.869+06	1
+2	2023-09-09 22:09:45.51+06	2023-09-09 22:09:45.51+06	2
+3	2023-09-09 22:10:39.6+06	2023-09-09 22:10:39.6+06	3
+\.
+
+
+--
+-- TOC entry 3411 (class 0 OID 24611)
+-- Dependencies: 221
+-- Data for Name: brands; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.brands (id, name, "createdAt", "updatedAt") FROM stdin;
+1	Samsung	2023-09-09 21:03:59.25+06	2023-09-09 21:03:59.25+06
+2	Apple	2023-09-09 21:04:05.453+06	2023-09-09 21:04:05.453+06
+3	Sony	2023-09-09 21:04:13.692+06	2023-09-09 21:04:13.692+06
+4	Xiaomi	2023-09-10 15:32:18.709+06	2023-09-10 15:32:18.709+06
+\.
+
+
+--
+-- TOC entry 3419 (class 0 OID 24676)
+-- Dependencies: 229
+-- Data for Name: device_infos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.device_infos (id, title, description, "createdAt", "updatedAt", "deviceId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3413 (class 0 OID 24620)
+-- Dependencies: 223
+-- Data for Name: devices; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.devices (id, name, price, rating, img, "createdAt", "updatedAt", "typeId", "brandId") FROM stdin;
+1	Iphone 14 Pro	1500	0	1fbb8ab0-ab37-485c-a13d-159549c5d1c4.jpg	2023-09-09 21:07:31.425+06	2023-09-09 21:07:31.425+06	2	2
+2	Iphone 13	1000	0	3889cb6c-6aca-4db6-abbe-2013dc5ef798.jpg	2023-09-09 21:07:56.241+06	2023-09-09 21:07:56.241+06	2	2
+3	Galaxy S23 Ultra	1300	0	2fef4a3a-68be-4938-9d36-883c23ebe17c.jpg	2023-09-09 21:08:25.653+06	2023-09-09 21:08:25.653+06	2	1
+4	Galaxy S21	900	0	0ded9f7f-34f3-4bda-b9d9-30acf0ed5c7e.jpg	2023-09-09 21:08:53.227+06	2023-09-09 21:08:53.227+06	2	1
+5	Xperia 1V	1500	0	93ea45a2-36ec-4b92-a8e6-1499e0e0f11b.jpg	2023-09-09 21:14:10.254+06	2023-09-09 21:14:10.254+06	2	3
+\.
+
+
+--
+-- TOC entry 3417 (class 0 OID 24659)
+-- Dependencies: 227
+-- Data for Name: ratings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ratings (id, rate, "createdAt", "updatedAt", "userId", "deviceId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3421 (class 0 OID 24690)
+-- Dependencies: 231
+-- Data for Name: type_brands; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.type_brands (id, "createdAt", "updatedAt", "typeId", "brandId") FROM stdin;
+\.
+
+
+--
+-- TOC entry 3409 (class 0 OID 24602)
+-- Dependencies: 219
+-- Data for Name: types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.types (id, name, "createdAt", "updatedAt") FROM stdin;
+1	Freezers	2023-09-09 21:03:30.342+06	2023-09-09 21:03:30.342+06
+2	Smartphones	2023-09-09 21:03:40.81+06	2023-09-09 21:03:40.81+06
+3	Vacuum cleaners	2023-09-10 15:30:23.919+06	2023-09-10 15:30:23.919+06
+\.
+
+
+--
+-- TOC entry 3405 (class 0 OID 24578)
+-- Dependencies: 215
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, email, password, role, "createdAt", "updatedAt") FROM stdin;
+1	pidor@hui.pizda	$2b$05$BXI95kvj8T4M36WLJa8vCe5aUnLDDn1CybqfiSVvKWr7Bdd1w3/P6	USER	2023-09-09 22:05:33.863+06	2023-09-09 22:05:33.863+06
+2	jigurda@hui.pizda	$2b$05$0wR0GvSaZkY12mBmGTzk0uPUS6vbudpC3xKbi3/ASYdy2PpOuUB4G	USER	2023-09-09 22:09:45.503+06	2023-09-09 22:09:45.503+06
+3	gandon@hui.pizda	$2b$05$k.x7z5yks7BuXmm2vTZbt.gZZ7CwvW5B5OO9l2qe1ix30xteD8WsS	ADMIN	2023-09-09 22:10:39.598+06	2023-09-09 22:10:39.598+06
+\.
+
+
+--
+-- TOC entry 3436 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: basket_devices_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.basket_devices_id_seq', 1, false);
+
+
+--
+-- TOC entry 3437 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: baskets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.baskets_id_seq', 3, true);
+
+
+--
+-- TOC entry 3438 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.brands_id_seq', 4, true);
+
+
+--
+-- TOC entry 3439 (class 0 OID 0)
+-- Dependencies: 228
+-- Name: device_infos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.device_infos_id_seq', 1, false);
+
+
+--
+-- TOC entry 3440 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: devices_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.devices_id_seq', 5, true);
+
+
+--
+-- TOC entry 3441 (class 0 OID 0)
+-- Dependencies: 226
+-- Name: ratings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ratings_id_seq', 1, false);
+
+
+--
+-- TOC entry 3442 (class 0 OID 0)
+-- Dependencies: 230
+-- Name: type_brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.type_brands_id_seq', 1, false);
+
+
+--
+-- TOC entry 3443 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.types_id_seq', 3, true);
+
+
+--
+-- TOC entry 3444 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
+
+
+--
+-- TOC entry 3243 (class 2606 OID 24647)
+-- Name: basket_devices basket_devices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.basket_devices
+    ADD CONSTRAINT basket_devices_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3229 (class 2606 OID 24595)
+-- Name: baskets baskets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT baskets_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3235 (class 2606 OID 24618)
+-- Name: brands brands_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.brands
+    ADD CONSTRAINT brands_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 3237 (class 2606 OID 24616)
+-- Name: brands brands_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.brands
+    ADD CONSTRAINT brands_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3247 (class 2606 OID 24683)
+-- Name: device_infos device_infos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.device_infos
+    ADD CONSTRAINT device_infos_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3239 (class 2606 OID 24630)
+-- Name: devices devices_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT devices_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 3241 (class 2606 OID 24628)
+-- Name: devices devices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT devices_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3245 (class 2606 OID 24664)
+-- Name: ratings ratings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ratings
+    ADD CONSTRAINT ratings_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3249 (class 2606 OID 24695)
+-- Name: type_brands type_brands_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.type_brands
+    ADD CONSTRAINT type_brands_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3251 (class 2606 OID 24697)
+-- Name: type_brands type_brands_typeId_brandId_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.type_brands
+    ADD CONSTRAINT "type_brands_typeId_brandId_key" UNIQUE ("typeId", "brandId");
+
+
+--
+-- TOC entry 3231 (class 2606 OID 24609)
+-- Name: types types_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.types
+    ADD CONSTRAINT types_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 3233 (class 2606 OID 24607)
+-- Name: types types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.types
+    ADD CONSTRAINT types_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3225 (class 2606 OID 24588)
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- TOC entry 3227 (class 2606 OID 24586)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 3255 (class 2606 OID 24648)
+-- Name: basket_devices basket_devices_basketId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.basket_devices
+    ADD CONSTRAINT "basket_devices_basketId_fkey" FOREIGN KEY ("basketId") REFERENCES public.baskets(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3256 (class 2606 OID 24653)
+-- Name: basket_devices basket_devices_deviceId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.basket_devices
+    ADD CONSTRAINT "basket_devices_deviceId_fkey" FOREIGN KEY ("deviceId") REFERENCES public.devices(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3252 (class 2606 OID 24596)
+-- Name: baskets baskets_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.baskets
+    ADD CONSTRAINT "baskets_userId_fkey" FOREIGN KEY ("userId") REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3259 (class 2606 OID 24684)
+-- Name: device_infos device_infos_deviceId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.device_infos
+    ADD CONSTRAINT "device_infos_deviceId_fkey" FOREIGN KEY ("deviceId") REFERENCES public.devices(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3253 (class 2606 OID 24636)
+-- Name: devices devices_brandId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT "devices_brandId_fkey" FOREIGN KEY ("brandId") REFERENCES public.brands(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3254 (class 2606 OID 24631)
+-- Name: devices devices_typeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT "devices_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES public.types(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3257 (class 2606 OID 24670)
+-- Name: ratings ratings_deviceId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ratings
+    ADD CONSTRAINT "ratings_deviceId_fkey" FOREIGN KEY ("deviceId") REFERENCES public.devices(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3258 (class 2606 OID 24665)
+-- Name: ratings ratings_userId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ratings
+    ADD CONSTRAINT "ratings_userId_fkey" FOREIGN KEY ("userId") REFERENCES public.users(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- TOC entry 3260 (class 2606 OID 24703)
+-- Name: type_brands type_brands_brandId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.type_brands
+    ADD CONSTRAINT "type_brands_brandId_fkey" FOREIGN KEY ("brandId") REFERENCES public.brands(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 3261 (class 2606 OID 24698)
+-- Name: type_brands type_brands_typeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.type_brands
+    ADD CONSTRAINT "type_brands_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES public.types(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2023-09-11 09:11:42
+
+--
+-- PostgreSQL database dump complete
+--
+
