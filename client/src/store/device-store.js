@@ -4,7 +4,9 @@ export default class DeviceStore {
   constructor() {
     this._types = [
       {id: 1, name: "Freezers"},
-      {id: 2, name: "Smartphones"}
+      {id: 2, name: "Smartphones"},
+      {id: 3, name: "Laptops"},
+      {id: 4, name: "TV"}
     ]
     this._brands = [
       {id: 1, name: "Samsung"},
@@ -18,6 +20,8 @@ export default class DeviceStore {
       {id: 4, name: "Galaxy S21", price: 900, rating: 7, img: "0ded9f7f-34f3-4bda-b9d9-30acf0ed5c7e.jpg"},
       {id: 5, name: "Xperia 1V", price: 1500, rating: 5, img: "93ea45a2-36ec-4b92-a8e6-1499e0e0f11b.jpg"},
     ]
+    this._selectedType = {};
+    this._selectedBrand = {};
     makeAutoObservable(this);
   }
 
@@ -33,6 +37,14 @@ export default class DeviceStore {
     this._devices = devices;
   }
 
+  setSelectedType(type) {
+    this._selectedType = type;
+  }
+
+  setSelectedBrand(brand) {
+    this._selectedBrand = brand;
+  }
+
   get types() {
     return this._types;
   }
@@ -43,5 +55,13 @@ export default class DeviceStore {
 
   get devices() {
     return this._devices;
+  }
+
+  get selectedType() {
+    return this._selectedType;
+  }
+
+  get selectedBrand() {
+    return this._selectedBrand;
   }
 }

@@ -1,8 +1,8 @@
-import Admin from "./pages/admin";
-import Auth from "./pages/auth";
-import Basket from "./pages/basket";
-import DevicePage from "./pages/device-page";
-import Shop from "./pages/shop";
+import Admin from "./pages/admin/admin";
+import Auth from "./pages/auth/auth";
+import Basket from "./pages/basket/basket";
+import DevicePage from "./pages/device-page/device-page";
+import Shop from "./pages/shop/shop";
 
 export const privateRoutes = [
   {path: "/", element: <Shop />},
@@ -13,6 +13,7 @@ export const privateRoutes = [
 export const publicRoutes = [
   {path: "/", element: <Auth />},
   {path: "/auth", element: <Auth />},
+  {path: "/registration", element: <Auth />},
   {path: "/shop", element: <Shop />},
   {path: "/device/:id", element: <DevicePage />},
 ]

@@ -5,16 +5,15 @@ import { privateRoutes, publicRoutes } from "../../routes";
 
 function AppRouter() {
   const {user} = useContext(Context);
-  console.log(user);
 
   return (
     <Routes>
       {publicRoutes.map(route =>
-        <Route element={route.element} path={route.path}></Route>
+        <Route key={Math.random} element={route.element} path={route.path}></Route>
       )}
       {user.isAuth ? <>
         {privateRoutes.map(route =>
-          <Route element={route.element} path={route.path}></Route>
+          <Route key={Math.random} element={route.element} path={route.path}></Route>
         )}
         <Route path="*" element={<Navigate to="/shop" />}></Route>
       </>
