@@ -1,26 +1,31 @@
-import React, { useState } from "react";
+import { observer } from 'mobx-react-lite';
+import React, { useContext, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from 'react-bootstrap/Row';
 import { useLocation } from "react-router-dom";
-import "./style.css";
+import { Context } from "../..";
 import { login, registration } from "../../http/user-api";
+import "./style.css";
 
-function Auth() {
+const Auth = observer(() => {
+  const {user} = useContext(Context);
   const location = useLocation();
   const isntLogin = location.pathname === "/registration";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const click = async () => {
+    let data;
     if (isntLogin) {
-      const response = await registration(email, password);
-      console.log(response);
+      data = await registration(email, password);
     } else {
-      const response = await login();
+      data = await login(email, password);
     }
+    user.setUser(user);
+    user.setIsAuth(true);
   }
 
   return (
@@ -61,6 +66,6 @@ function Auth() {
       </Card>
     </Container>
   )
-}
+})
 
 export default Auth;
