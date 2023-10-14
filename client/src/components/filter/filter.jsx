@@ -10,7 +10,7 @@ const Filter = observer(() => {
     <ListGroup>
       {device.types.map(type =>
         <ListGroupItem
-          style={{cursor: "pointer"}}
+          style={{cursor: 'pointer'}}
           active={type.id === device.selectedType.id}
           key={type.id}
           onClick={() => {device.setSelectedType(type)}}

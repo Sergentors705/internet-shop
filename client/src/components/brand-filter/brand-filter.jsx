@@ -10,7 +10,7 @@ const BrandFilter = observer(() => {
     <ListGroup horizontal className='flex-wrap'>
       {device.brands.map(brand =>
         <ListGroupItem
-          style={{cursor: "pointer"}}
+          style={{cursor: 'pointer'}}
           active={brand.id === device.selectedBrand.id}
           key={brand.id}
           onClick={() => {device.setSelectedBrand(brand)}}

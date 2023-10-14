@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Container from "react-bootstrap/Container";
-import ModalBrand from "../../components/modals/modal-brand";
-import ModalDevice from "../../components/modals/modal-device";
-import ModalType from "../../components/modals/modal-type";
+import Container from 'react-bootstrap/Container';
+import ModalBrand from '../../components/modals/modal-brand';
+import ModalDevice from '../../components/modals/modal-device';
+import ModalType from '../../components/modals/modal-type';
 
 function Admin() {
   const [modalTypeShow, setModalTypeShow] = React.useState(false);
@@ -12,23 +12,23 @@ function Admin() {
   return (
     <>
       <Container
-        className="d-flex justify-content-center align-items-center mt-3"
-        style={{gap: "10px"}}
+        className='d-flex justify-content-center align-items-center mt-3'
+        style={{gap: '10px'}}
       >
         <Button
-          variant="primary"
+          variant='primary'
           onClick={() => setModalTypeShow(true)}
         >
           Add Type
         </Button>
         <Button
-          variant="primary"
+          variant='primary'
           onClick={() => setModalBrandShow(true)}
         >
           Add Brand
         </Button>
         <Button
-          variant="primary"
+          variant='primary'
           onClick={() => setModalDeviceShow(true)}
         >
           Add Device

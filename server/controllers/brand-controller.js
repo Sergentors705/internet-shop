@@ -1,5 +1,5 @@
-const ApiError = require("../error/api-error");
-const {Brand} = require("../models/models");
+const ApiError = require('../error/api-error');
+const {Brand} = require('../models/models');
 
 class BrandController {
   async create(req, res) {
